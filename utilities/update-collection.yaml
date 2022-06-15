@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    tag: ''
+    collection_namespace: "{{ (lookup('file','../galaxy.yml') | from_yaml).namespace }}"
+    collection_name: "{{ (lookup('file','../galaxy.yml') | from_yaml).name }}"
+  tasks:
+
+    - name: Ensure the ANSIBLE_GALAXY_TOKEN environment variable is set.
+      fail:
+        msg: ANSIBLE_GALAXY_TOKEN is not set.
+      when: "lookup('env','ANSIBLE_GALAXY_TOKEN') == ''"
+
+    - name: Templating galaxy.yml file.
+      template:
+        src: templates/galaxy.yaml.j2
+        dest: ../galaxy.yml
+
+    - name: Build the collection.
+      command: >
+        ansible-galaxy collection build --force
+        chdir=../
+    - name: Publish the collection.
+      command: >
+        ansible-galaxy collection publish ./{{ collection_namespace }}-{{ collection_name }}-{{ tag }}.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN --ignore-certs
+        chdir=../
+      register: galaxy_publish_status
+    - name: Galaxy Publish Status
+      debug:
+        msg: "{{ galaxy_publish_status }}"

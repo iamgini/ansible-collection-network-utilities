@@ -1,0 +1,9 @@
+- name: Check {{ network_os }} details
+  cisco.asa.asa_command:
+    commands:
+    - show version
+  register: device_version
+
+- name: Display {{ network_os }} details
+  debug:
+    msg: "{{ device_version }}"

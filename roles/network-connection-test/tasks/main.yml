@@ -1,0 +1,6 @@
+---
+# tasks file for network-connection-test
+
+- name: Check Cisco ASA Device 
+  include_tasks: "{{ network_os }}.yaml"
+  when: network_os is defined

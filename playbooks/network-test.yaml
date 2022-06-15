@@ -1,0 +1,26 @@
+---
+# Test Ansible version 2.11.1
+
+- name: Network Connection Test
+  hosts: "{{ nw_devices }}"
+  gather_facts: no
+  
+  tasks:
+    - name: Set network os
+      ansible.builtin.set_fact:
+        network_os: "{{ ansible_network_os | replace('.','-') }}"
+    - debug:
+        msg: "{{ network_os }}"
+
+    - name: Check Device Connection
+      include_role:
+        name: network-connection-test
+      #when:
+      #  - ansible_network_os == 'cisco.asa.asa'
+      #  - take_backup == "Yes"        
+    #- name: Test reachability to 10.10.10.10
+    #  ansible.netcommon.net_ping:
+    #    dest: 10.10.10.10
+    #- name: run show version command
+    #  ansible.netcommon.cli_command:
+    #    command: show version
