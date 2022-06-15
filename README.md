@@ -12,7 +12,7 @@ ansible-galaxy collection install ginigangadharan.network_utilities
 
 ## Inventory
 
-Check the [`inventory`](https://github.com/ginigangadharan/ansible-collection-network-utilities/blob/main/inventory) file in the [GitHub repo](https://github.com/ginigangadharan/ansible-collection-network-utilities) to find the connection parameters.
+Check the [`inventory`](inventory) file in the [GitHub repo](https://github.com/ginigangadharan/ansible-collection-network-utilities) to find the connection parameters.
 
 ## Testing Modules
 
