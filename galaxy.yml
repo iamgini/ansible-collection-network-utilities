@@ -1,7 +1,7 @@
 ---
 namespace: ginigangadharan
 name: network_utilities
-version: 0.0.4
+version: 0.0.6
 readme: README.md
 authors:
   - Gineesh Madapparambath <net.gini@gmail.com>

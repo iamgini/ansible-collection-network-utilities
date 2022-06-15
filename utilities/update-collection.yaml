@@ -30,3 +30,8 @@
     - name: Galaxy Publish Status
       debug:
         msg: "{{ galaxy_publish_status }}"
+        
+    - name: Remove Archive file
+      ansible.builtin.file:
+        path: ./{{ collection_namespace }}-{{ collection_name }}-{{ tag }}.tar.gz
+        state: absent
