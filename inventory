@@ -1,0 +1,107 @@
+[local]
+localhost ansible_connection=local
+
+[asa]
+ciscoasa ansible_host=192.168.57.121
+
+[asa:vars]
+ansible_user=adminasa
+ansible_ssh_pass=password
+ansible_become=true
+ansible_become_method=ansible.netcommon.enable
+ansible_become_pass=password
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=cisco.asa.asa
+
+#ansible_python_interpreter=python
+#ansible_ssh_common_args=" -o KexAlgorithms=+diffie-hellman-group14-sha1,diffie-hellman-group1-sha1"
+
+#ansible_ssh_common_args=' -oKexAlgorithms=+diffie-hellman-group1-sha1 '
+#ansible_ssh_extra_args=' -oKexAlgorithms=+diffie-hellman-group1-sha1 '
+#ansible_ssh_common_args=" -c diffie-hellman-group1-sha1 "
+#ansible_ssh_extra_args=" -c diffie-hellman-group1-sha1 "
+
+
+[nx9k]
+cisconx9k ansible_host=192.168.57.122
+
+[nx9k:vars]
+ansible_user=admin
+ansible_ssh_pass='Admin#123'
+ansible_become=true
+ansible_become_method=ansible.netcommon.enable
+ansible_become_pass='Admin#123'
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=cisco.nxos.nxos
+#ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q bastion01"'
+
+[ios]
+ciscoios ansible_host=192.168.57.130
+
+[ios:vars]
+ansible_user=admin
+ansible_ssh_pass='Admin#123'
+ansible_become=true
+ansible_become_method=ansible.netcommon.enable
+ansible_become_pass='Admin#123'
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=cisco.ios.ios
+
+[panos]
+panos-aws ansible_host=50.17.95.48
+
+[panos:vars]
+ansible_user=admin
+ansible_ssh_pass='Admin#123'
+ansible_become=true
+ansible_become_method=ansible.netcommon.enable
+ansible_become_pass='Admin#123'
+#ansible_connection=ansible.netcommon.network_cli
+#ansible_network_os=panos
+#ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q bastion01"'
+
+
+[checkpoint]
+cpdev ansible_host=192.168.57.124
+
+[checkpoint:vars]
+ansible_user=admin
+ansible_ssh_pass='Admin#123'
+#ansible_become=true
+#ansible_become_method=ansible.netcommon.enable
+#ansible_become_pass='Admin#123'
+ansible_network_os=check_point.mgmt.checkpoint
+ansible_connection=ansible.netcommon.httpapi
+ansible_httpapi_use_ssl=True
+ansible_httpapi_validate_certs=False
+#ansible_user=%CHECK_POINT_MANAGEMENT_SERVER_USER%
+#ansible_password=%CHECK_POINT_MANAGEMENT_SERVER_PASSWORD%
+
+
+[fortios]
+fg01 ansible_host=192.168.57.125
+
+[fortios:vars]
+ansible_user=admin
+ansible_ssh_pass='Admin#123'
+ansible_host_key_checking=false
+#ansible_network_os=fortinet.fortios.fortios
+#ansible_connection=ansible.netcommon.httpapi
+#ansible_httpapi_use_ssl=True
+#ansible_httpapi_validate_certs=False
+
+[f5]
+f5bigip ansible_host=192.168.57.126
+
+[f5:vars]
+ansible_user=admin
+ansible_ssh_pass='Admin#123'
+#ansible_become=true
+#ansible_become_method=ansible.netcommon.enable
+#ansible_become_pass='Admin#123'
+ansible_network_os=f5networks.f5_bigip.bigip
+ansible_connection=ansible.netcommon.httpapi
+ansible_httpapi_use_ssl=True
+ansible_httpapi_validate_certs=False
+#ansible_user=%CHECK_POINT_MANAGEMENT_SERVER_USER%
+#ansible_password=%CHECK_POINT_MANAGEMENT_SERVER_PASSWORD%
